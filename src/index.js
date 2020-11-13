@@ -5,12 +5,18 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-
-
+import "./less/style.less";
+import Header from "./js/components/header/header";
+import Auth from "./js/components/auth/auth";
+import Main from "./js/components/main/main";
 
 export default function App() {
   return (
-    <h1>Hello world!</h1>
+    <Router>
+      <Header />
+      <Route exact path = "/" render = {() => <Main />}></Route>
+      <Auth />
+    </Router>
   )
 }
 ReactDOM.render(<App />, document.getElementById("root"));
