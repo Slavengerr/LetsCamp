@@ -1,14 +1,16 @@
 .header {
-  
   &__link {
     color: black;
     text-decoration: none;
     font-size: 24px;
     &_active {
-      color: green;
+      color: rgb(47, 133, 47);
     }
     &:first-of-type {
       flex-grow: 4;
+      @media screen and (max-width: 768px) {
+        flex-grow: 0;
+      }
     }
     &:not(:first-of-type) {
       flex-grow: 1;
@@ -16,17 +18,33 @@
     &:last-of-type {
       flex-grow: 0.5
     }
-    @media screen and (max-width:767px) and (min-width: 320px) {
+    @media screen and (max-width:767px) and (min-width: 0px) {
       &:not(:first-of-type) {
         display: none;
       }
     }
   }
+  &__menu {
+    @media screen and (min-width: 768px) {
+      display: none;
+    }
+    width: 30px;
+    height: 30px;
+    margin-right: 5%;
+    &_button {
+      background-color: transparent;
+      border: 0px;
+      cursor: pointer;
+    }
+  }
   &__logo {
-    width: 60px;
-    width: 60px;
-    background-color: rgb(75, 128, 75);
+    width: 100px;
+    width: 100px;
     margin-left: 40px;
+    @media screen and (min-width: 280px) and (max-width: 767px) {
+      width: 80px;
+      margin-left: 5%;
+    }
   }
   &__links {
     display: flex;

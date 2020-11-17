@@ -1,0 +1,52 @@
+.lk {
+  &__heading {
+    font-size: 30px;
+  }
+  &__header {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+  }
+  &__wrapper {
+    margin: 0 auto;
+    @media screen and (min-width: 1440px) {
+      width: 900px;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1439px) {
+      width: 768px;
+    }
+    @media screen and (max-width: 767px) {
+      width: 90%;
+    }
+  }
+  &__leave {
+    border: 1px solid rgb(31, 73, 31);
+    color:  rgb(31, 73, 31);
+    border-radius: 10px;
+    font-size: 25px;
+    background-color: white;
+  }
+}
+
+
+
+.request {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  &__input {
+    height: 30px;
+  }
+  &__submit {
+    background-color: white;
+    vertical-align: center;
+    font-size: 20px;
+    margin: 0 auto;
+    border: 1px solid rgb(31, 73, 31);
+    color:  rgb(31, 73, 31);
+    font-size: 30px;
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+}

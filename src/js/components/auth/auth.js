@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {auth, database} from "../../firebase";
-import {Route, NavLink} from "react-router-dom";
+import {Route, NavLink, Redirect} from "react-router-dom";
 import SubmitRequest from "../SubmitRequest/SubmitRequest";
 import "./auth.less";
 
@@ -8,6 +8,10 @@ import "./auth.less";
 class Auth extends Component {
   constructor(props) {
     super(props);
+    
+    this.state = {
+      user: null
+    }
   }
 
   signIn = (e) => {
@@ -38,6 +42,11 @@ class Auth extends Component {
           break;
       }
     }) : null;
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({user});
+      }
+    })
     function validateEmail(email) {
       const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       let result = re.test(String(email).toLowerCase());
@@ -112,6 +121,11 @@ class Auth extends Component {
       }
     }
 
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({user})
+      }
+    })
     
     let request = {
       name: name.value,
@@ -122,11 +136,17 @@ class Auth extends Component {
     if (validateEmail(email.value) && validateName(name.value) && validateName(surname.value)) {
       SubmitRequest.create(request);
     }
+
+    
   }
 
   render() {
+    let user = this.state.user;
     return(
-      <>
+      user ? 
+        <Redirect to = "/lk" />
+        :
+        <>
         <Route exact path = "/auth/signup" render = {() => 
         <form id = "auth" className = "auth">
         <div className = "auth__slider slider">

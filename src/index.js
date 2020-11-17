@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from "react";
 import ReactDOM from "react-dom";
 import {
   BrowserRouter as Router,
@@ -9,12 +9,28 @@ import "./less/style.less";
 import Header from "./js/components/header/header";
 import Auth from "./js/components/auth/auth";
 import Main from "./js/components/main/main";
+import PersonalArea from "./js/components/PersonalArea/PersonalArea";
+import CampingList from "./js/components/CampingList/CampingList";
+import CampingItem from "./js/components/CampingList/CampingItem/CampingItem";
+import CampingFull from "./js/components/CampingList/CampingItem/CampingFull/CampingFull";
+
+class Hello extends Component {
+  render() {
+    return (
+      <h1>HELLO WORLD!</h1>
+    )
+  }
+}
 
 export default function App() {
   return (
     <Router>
       <Header />
+      
+      <Route exact path = "/campings" render = {() => <CampingList />}></Route>
+      <Route path = "/campings/:id" render = {(routerProps) => <CampingFull  {...routerProps}/>}></Route>
       <Route exact path = "/" render = {() => <Main />}></Route>
+      <Route exact path = "/lk" render = {() => <PersonalArea />}></Route>
       <Auth />
     </Router>
   )
